@@ -41,16 +41,10 @@ app.post("/api/register", async (req, res) => {
 
     const validator = require('validator');
 
-const correoSeguro = typeof correo === 'string' ? correo.trim().toLowerCase() : '';
-
-if (!validator.isEmail(correoSeguro)) {
-  return res.status(400).json({ error: "Correo inválido" });
-}
-
-const existingUser = await User.findOne({ correo: correoSeguro });
-if (existingUser) {
-  return res.status(400).json({ error: "El correo ya está registrado" });
-}
+const existingUser = await User.findOne({ correo }); 
+    if (existingUser) {
+      return res.status(400).json({ error: "El correo ya está registrado" });
+    }
 
     const nuevoUsuario = new User({
       nombre,,
