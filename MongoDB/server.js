@@ -39,7 +39,7 @@ app.post("/api/register", async (req, res) => {
       contraseña,
     } = req.body;
 
-    const validator = require('validator');
+
 
 const existingUser = await User.findOne({ correo }); 
     if (existingUser) {
