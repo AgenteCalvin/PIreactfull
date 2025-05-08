@@ -67,9 +67,16 @@ app.post("/login", async (req, res) => {
   const { usernameOrEmail, contraseña } = req.body;
 
   try {
-    const user = await User.findOne({
-      $or: [{ usuario: usernameOrEmail }, { correo: usernameOrEmail }],
-    });
+   const sanitizeInput = input => typeof input === 'string' ? input : '';
+
+const sanitizedInput = sanitizeInput(usernameOrEmail);
+
+const user = await User.findOne({
+  $or: [
+    { usuario: sanitizedInput },
+    { correo: sanitizedInput }
+  ]
+});
 
     if (!user) {
       return res.status(404).json({ message: "Usuario o correo no encontrado" });
