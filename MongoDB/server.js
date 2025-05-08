@@ -53,7 +53,7 @@ if (existingUser) {
 }
 
     const nuevoUsuario = new User({
-      nombre,
+      nombre,,
       apellidos,
       tipoId,
       numeroId,
@@ -72,7 +72,7 @@ if (existingUser) {
 
 // Ruta de login
 app.post("/login", async (req, res) => {
-  const { usernameOrEmail, contraseña } = req.body;
+  const { usernameOrEmail, contraseña } = req.body;.
 
   try {
    const sanitizeInput = input => typeof input === 'string' ? input : '';
